@@ -29,25 +29,31 @@ local c = {
 
   bg_blue  = hsluv(230, 30, 22),
 
+  git = {
+    delete    = hsluv(24, 45, 52),
+    change    = hsluv(216, 37, 63),
+    add       = hsluv(110, 37, 55)
+  },
+
   n = {
-    yellow = hsluv(50, 50, 74),
+    yellow = hsluv(50, 45, 65),
     cyan   = hsluv(200, 18, 53),
-    blue   = hsluv(216, 35, 65),
-    green  = hsluv(170, 35, 70),
-    red    = hsluv(10, 45, 64),
-    magenta = hsluv(340, 45, 64),
+    blue   = hsluv(216, 30, 60),
+    green  = hsluv(110, 35, 65),
+    red    = hsluv(24, 35, 52),
+    magenta = hsluv(0, 25, 60),
   },
 
   b = {
-    red    = hsluv(4, 90, 60),
-    yellow = hsluv(50, 90, 80),
-    blue   = hsluv(212, 70, 70),
+    red    = hsluv(15, 65, 60),
+    yellow = hsluv(50, 70, 65),
+    blue   = hsluv(216, 60, 60),
   },
 
   m = {
     red    = hsluv(24, 45, 52),
     blue   = hsluv(212, 37, 63),
-    green  = hsluv(190, 37, 55),
+    green  = hsluv(150, 37, 55),
     yellow = hsluv(50, 45, 60),
   },
 
@@ -62,6 +68,62 @@ local c = {
   },
 }
 
+local c2 = {
+  black = hsluv(0, 0, 0),
+
+  bg  = c.bg,
+  bg0 = c.bg1,
+  bg1 = c.bg2,
+  bg2 = c.bg3,
+
+  gray = hsluv(10, 0, 45),
+
+  fg  = c.fg,
+  fg0 = c.fg1,
+  fg1 = c.fg2,
+  fg2 = c.fg3,
+
+  bg_blue  = hsluv(230, 30, 22),
+
+  git = {
+    add = c.git.add,
+    change = c.git.change,
+    delete = c.git.delete
+  },
+
+  n = {
+    yellow = c.n.yellow,
+    cyan   = c.n.cyan,
+    blue   = c.n.blue,
+    green  = c.n.green,
+    red    = c.n.red,
+    magenta = c.n.magenta,
+  },
+
+  b = {
+    red    = c.b.red,
+    yellow = c.b.yellow,
+    blue   = c.b.blue,
+  },
+
+  m = {
+    red    = c.m.red,
+    blue   = c.m.blue,
+    green  = c.m.green,
+    yellow = c.m.yellow,
+  },
+
+  ref = {
+    green  = c.ref.green,
+    blue   = c.ref.blue,
+    cyan   = c.ref.cyan,
+  },
+
+  d = {
+    cyan  = c.d.cyan
+  },
+}
+
 ---@diagnostic disable: undefined-global
 local theme = lush(function ()
   return {
@@ -71,9 +133,13 @@ local theme = lush(function ()
     Operator { fg = c.n.cyan, gui = 'bold' },
     Visual { bg = c.bg_blue },
     MatchParen { fg = c.bg, bg = c.ref.blue, gui='bold' },
-    Comment { fg = c.bg6, gui='italic' },
+    Comment { fg = c.fg7, gui='italic' },
     Whitespace { fg = c.bg4 },
     EndOfBuffer { fg = c.bg4 },
+
+    TabLine { fg = c.fg2 },
+    TabLineSel { fg = c.fg4 },
+    TabLineFill { fg = c.fg2 },
 
     VertSplit { fg = c.bg6 },
 
@@ -81,25 +147,25 @@ local theme = lush(function ()
 
     LineNr { fg = c.fg6, bg = c.bg2.da(20) },
     SignColumn { bg = LineNr.bg },
-    GitSignsAdd { fg = c.m.green, bg = SignColumn.bg },
-    GitSignsDelete { fg = c.m.red, bg = SignColumn.bg },
-    GitSignsChange { fg = c.m.yellow, bg = SignColumn.bg },
+    GitSignsAdd { fg = c.git.add, bg = SignColumn.bg },
+    GitSignsDelete { fg = c.git.delete, bg = SignColumn.bg },
+    GitSignsChange { fg = c.git.change, bg = SignColumn.bg },
 
-    DiffAdd { bg = c.m.green.da(40) },
-    DiffDelete { bg = c.m.red.da(40) },
-    DiffChange { bg = c.m.yellow.da(40) },
-    DiffText { bg = c.m.yellow.da(40), gui = 'underline' },
+    DiffAdd { bg = c.git.add.da(50) },
+    DiffDelete { bg = c.git.delete.da(50) },
+    DiffChange { bg = c.git.change.da(50) },
+    DiffText { bg = c.git.change.da(50), sp = c.fg2, gui = 'underline' },
 
     CursorLine { bg = c.bg2 },
     CursorLineNr { fg = c.n.yellow, bg = CursorLine.bg, gui = 'bold' },
 
-    StatusLine { bg = c.bg1 },
-    StatusLineNC { bg = c.bg1 },
+    StatusLine { bg = c.bg2 },
+    StatusLineNC { bg = c.bg2 },
 
-    Pmenu { fg = c.fg2, bg = c.bg0 },
+    Pmenu { fg = c.fg4, bg = c.bg1 },
     PmenuSel { fg = c.bg0, bg = c.n.blue },
     PmenuSbar { bg = c.bg2 },
-    PmenuThumb { bg = c.fg2 },
+    PmenuThumb { bg = c.fg6 },
 
     NonText { EndOfBuffer },
 
@@ -108,10 +174,10 @@ local theme = lush(function ()
     Title { gui = 'bold' },
 
     Error { fg = c.b.red, gui = 'bold' },
-    ErrorMsg { fg = c.bg, bg = c.b.red, gui = 'bold' },
+    ErrorMsg { fg = c.b.red, gui = 'bold' },
     Warning { fg = c.b.yellow, gui = 'bold' },
-    WarningMsg { fg = c.bg, bg = c.b.yellow, gui = 'bold' },
-    MoreMsg { fg = c.bg, bg = c.b.blue, gui = 'bold' },
+    WarningMsg { fg = c.b.yellow, gui = 'bold' },
+    MoreMsg { fg = c.b.blue, gui = 'bold' },
 
     Search { fg = c.bg, bg = c.b.yellow, gui = 'bold' },
     WildMenu {},
@@ -125,30 +191,33 @@ local theme = lush(function ()
     Directory {},
     PreProc {},
     Noise {},
-    String { fg = c.n.green, gui = 'italic' },
-    Statement { gui = 'bold' },
+    String { fg = c.n.green },
+    Statement { fg = c.n.red, gui = 'bold' },
     Number { fg = c.n.yellow },
     Type { fg = c.n.blue, gui = 'bold' },
-    Keyword { fg = c.fg2, gui = 'bold' },
-    Special { fg = c.fg2, gui='bold' },
+    Keyword { fg = c.fg3, gui = 'bold' },
+    Special { fg = c.n.cyan, gui='bold' },
     Identifier { fg = c.fg1, gui = 'italic' },
     Question { gui = 'italic' },
 
-    NormalFloat = { NormalTransparent },
+    NormalFloat { bg = c.bg1 },
+    FloatBorder { NormalFloat },
 
-    CocHighlightText { fg = c.b.yellow, gui='underline,bold' },
+    CocHighlightText { gui='underline' },
     CocErrorSign { fg = c.b.red, bg = SignColumn.bg },
     CocWarningSign { fg = c.b.yellow, bg = SignColumn.bg },
     CocHintSign { fg = c.b.blue, bg = SignColumn.bg },
     CocInfoSign { fg = c.b.blue, bg = SignColumn.bg },
+    CocExplorerDiagnosticError { fg = c.b.red },
+    CocExplorerDiagnosticWarning { fg = c.b.yellow },
     CocErrorHighlight { sp = c.b.red, gui = 'undercurl' },
     CocWarningHighlight { sp = c.b.yellow, gui='undercurl' },
     CocInfoHighlight { sp = c.b.blue, gui = 'undercurl' },
     CocHintHighlight { sp = c.b.blue, gui = 'undercurl' },
     HighlightedyankRegion { Warning },
 
-    typescriptObjectLabel { fg = c.fg },
-    typescriptCall { fg = c.fg, gui = 'italic' },
+    typescriptObjectLabel { fg = c.fg2 },
+    typescriptCall { fg = c.fg2, gui = 'italic' },
     typescriptOperator { Operator },
     typesciptTypeReference { Type },
     typescriptTypeParameter { Type },
@@ -168,14 +237,14 @@ local theme = lush(function ()
     typescriptAssign { typescriptOperator },
     typescriptUnaryOp { typescriptOperator },
     typescriptBracket { Delimiter },
-    typescriptPredefinedType { Special },
+    typescriptPredefinedType { Keyword },
     typescriptTypeArguments { Delimiter },
     typescriptInterfaceName { Type },
     typescriptClassName { Type },
     typescriptAliasDeclaration { Type },
     typescriptNull { Number },
     typescriptBoolean { Number },
-    tsxIntrinsicTagName { Special },
+    tsxIntrinsicTagName { Keyword },
     tsxTagName { Type },
     tsxTag { Delimiter },
     tsxCloseTag { Delimiter },
@@ -184,17 +253,17 @@ local theme = lush(function ()
     tsxEqual { Delimiter },
     typescriptDocNotation { fg = c.bg7, gui = 'bold,italic' },
     typescriptDocTags { typescriptDocNotation },
-    jsxTagName { Special },
+    jsxTagName { Keyword },
     jsxComponentName { Type },
     jsxOpenPunct { Delimiter },
     jsxClosePunct { Delimiter },
     jsxCloseString { Delimiter },
     jsxAttrib { NormalTransparent },
 
-    Crumbling { lush = c }
+    Crumbling { lush = c2 }
   }
 end)
 
-require('build').build(c)
+require('crumbling.build').build(c)
 
 return theme

@@ -10,7 +10,7 @@ end
 
 -- Get the directory where the melange plugin is located
 local function get_dir()
-  return debug.getinfo(1).source:match("@?(.*/)"):gsub("crumbling/lua/lush_theme/$", "")
+  return debug.getinfo(1).source:match("@?(.*/)"):gsub("lua/crumbling/$", "")
 end
 
 -- Write the contents of a buffer to a file
