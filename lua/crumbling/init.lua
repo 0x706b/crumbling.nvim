@@ -156,6 +156,7 @@ local theme = lush(function ()
     DiffChange { bg = c.git.change.da(50) },
     DiffText { bg = c.git.change.da(50), sp = c.fg2, gui = 'underline' },
 
+    Cursor { Normal, gui = 'reverse' },
     CursorLine { bg = c.bg2 },
     CursorLineNr { fg = c.n.yellow, bg = CursorLine.bg, gui = 'bold' },
 
