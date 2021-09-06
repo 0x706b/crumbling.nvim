@@ -132,7 +132,7 @@ local theme = lush(function ()
     Delimiter { fg = c.n.cyan },
     Operator { fg = c.n.cyan, gui = 'bold' },
     Visual { bg = c.bg_blue },
-    MatchParen { fg = c.bg, bg = c.ref.blue, gui='bold' },
+    MatchParen { fg = c.bg, bg = c.b.yellow, gui='bold' },
     Comment { fg = c.fg7, gui='italic' },
     Whitespace { fg = c.bg4 },
     EndOfBuffer { fg = c.bg4 },
@@ -200,6 +200,7 @@ local theme = lush(function ()
     Special { fg = c.n.cyan, gui='bold' },
     Identifier { fg = c.fg1, gui = 'italic' },
     Question { gui = 'italic' },
+    SpecialKey {},
 
     NormalFloat { bg = c.bg1 },
     FloatBorder { NormalFloat },
