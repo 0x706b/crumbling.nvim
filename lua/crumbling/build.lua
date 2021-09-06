@@ -26,6 +26,7 @@ function terms.kitty.build(colors)
     {"background %s", colors.bg};
     {"foreground %s", colors.fg2};
     {"cursor     %s", colors.fg2};
+    {"cursor_text_color %s", colors.bg};
     {"url_color  %s", colors.n.blue};
 
     {"selection_background    %s", colors.bg_blue};
