@@ -137,9 +137,9 @@ local theme = lush(function ()
     Whitespace { fg = c.bg4 },
     EndOfBuffer { fg = c.bg4 },
 
-    TabLine { fg = c.fg2 },
-    TabLineSel { fg = c.fg4 },
-    TabLineFill { fg = c.fg2 },
+    TabLine { fg = c.fg2, bg = c.bg1 },
+    TabLineSel { fg = c.fg2, bg = c.bg3 },
+    TabLineFill { bg = c.bg1 },
 
     VertSplit { fg = c.bg6 },
 
