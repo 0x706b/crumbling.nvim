@@ -262,6 +262,8 @@ local theme = lush(function ()
     jsxCloseString { Delimiter },
     jsxAttrib { NormalTransparent },
 
+    IndentBlanklineContextChar { fg = c.fg7 },
+
     Crumbling { lush = c2 }
   }
 end)
