@@ -128,7 +128,7 @@ local c2 = {
 local theme = lush(function ()
   return {
     Normal { fg = c.fg2, bg = c.bg },
-    NormalTransparent { fg = c.fg0 },
+    NormalTransparent { fg = c.fg2 },
     Delimiter { fg = c.n.cyan },
     Operator { fg = c.n.cyan, gui = 'bold' },
     Visual { bg = c.bg_blue },
@@ -145,7 +145,7 @@ local theme = lush(function ()
 
     TSPunctBracket { Delimiter },
 
-    LineNr { fg = c.fg6, bg = c.bg2.da(20) },
+    LineNr { fg = c.bg5, bg = c.bg1 },
     SignColumn { bg = LineNr.bg },
     GitSignsAdd { fg = c.git.add, bg = SignColumn.bg },
     GitSignsDelete { fg = c.git.delete, bg = SignColumn.bg },
@@ -157,7 +157,7 @@ local theme = lush(function ()
     DiffText { bg = c.git.change.da(50), sp = c.fg2, gui = 'underline' },
 
     Cursor { Normal, gui = 'reverse' },
-    CursorLine { bg = c.bg2 },
+    CursorLine { bg = c.bg1 },
     CursorLineNr { fg = c.n.yellow, bg = CursorLine.bg, gui = 'bold' },
 
     StatusLine { bg = c.bg2 },
